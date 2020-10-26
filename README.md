@@ -4,6 +4,7 @@
 * pyenv 1.2.21
 * Python 3.8.6
   * numpy 1.19.2
+  * matplotlib 3.3.2
 
 ## 2. Reference
 
