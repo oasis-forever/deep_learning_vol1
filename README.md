@@ -3,6 +3,7 @@
 * WSL(Ubuntu 20.04.1 LTS (GNU/Linux 4.19.128-microsoft-standard x86_64))
 * pyenv 1.2.21
 * Python 3.8.6
+  * numpy 1.19.2
 
 ## 2. Reference
 
