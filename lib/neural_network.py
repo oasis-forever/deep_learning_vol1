@@ -16,3 +16,8 @@ class NeuralNetwork:
         y =  np.array(x > 0, dtype=np.int)
         self._save_image(x, y, sys._getframe().f_code.co_name)
         return y
+
+    def sigmoid(self, x):
+        y = 1 / (1 + np.exp(-x))
+        self._save_image(x, y, sys._getframe().f_code.co_name)
+        return y
