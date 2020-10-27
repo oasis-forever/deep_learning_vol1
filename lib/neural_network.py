@@ -26,3 +26,6 @@ class NeuralNetwork:
         y = np.maximum(0, x)
         self._save_image(x, y, sys._getframe().f_code.co_name)
         return y
+
+    def matrix_product(self, a, b):
+        return np.dot(a, b)

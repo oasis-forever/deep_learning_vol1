@@ -77,5 +77,39 @@ class TestNeuralNetwork(unittest.TestCase):
         ), y)
         self.assertEqual(True, path.exists("../img/relu.png"))
 
+    def test_matrix_product_1(self):
+        a = np.array([[1, 2], [3, 4]])
+        b = np.array([[5, 6], [7, 8]])
+        product = self.nw.matrix_product(a, b)
+        self.assertEqual((2, 2), a.shape)
+        self.assertEqual((2, 2), b.shape)
+        assert_array_equal(np.array(
+            [
+                [19, 22],
+                [43, 50]
+            ]
+        ), product)
+
+    def test_matrix_product_2(self):
+        a = np.array([[1, 2, 3], [4, 5, 6]])
+        b = np.array([[1, 2], [3, 4], [5,6]])
+        product = self.nw.matrix_product(a, b)
+        self.assertEqual((2, 3), a.shape)
+        self.assertEqual((3, 2), b.shape)
+        assert_array_equal(np.array(
+            [
+                [22, 28],
+                [49, 64]
+            ]
+        ), product)
+
+    def test_matrix_product_3(self):
+        a = np.array([[1, 2], [3, 4], [5,6]])
+        b = np.array([7, 8])
+        product = self.nw.matrix_product(a, b)
+        self.assertEqual((3, 2), a.shape)
+        self.assertEqual((2,), b.shape)
+        assert_array_equal(np.array([23, 53, 83]), product)
+
 if __name__ == "__main__":
     unittest.main()
