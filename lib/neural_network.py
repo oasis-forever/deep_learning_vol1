@@ -21,3 +21,8 @@ class NeuralNetwork:
         y = 1 / (1 + np.exp(-x))
         self._save_image(x, y, sys._getframe().f_code.co_name)
         return y
+
+    def relu(self, x):
+        y = np.maximum(0, x)
+        self._save_image(x, y, sys._getframe().f_code.co_name)
+        return y
