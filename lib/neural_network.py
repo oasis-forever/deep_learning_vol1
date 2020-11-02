@@ -53,3 +53,9 @@ class NeuralNetwork:
         a3 = np.dot(z2, W3) + b3
         y  = self.identify_function(a3)
         return y
+
+    def softmax(self, a):
+        exp_a = np.exp(a)
+        sum_exp_a = np.sum(exp_a)
+        y = exp_a / sum_exp_a
+        return y

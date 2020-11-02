@@ -117,5 +117,15 @@ class TestNeuralNetwork(unittest.TestCase):
         y = self.nnw.forward(network, x)
         assert_almost_equal(np.array([0.31682708, 0.69627909]), y)
 
+    def test_softmax(self):
+        y = self.nnw.softmax(np.array([0.3, 2.9, 4.0]))
+        assert_almost_equal(np.array(
+            [
+                0.01821127,
+                0.24519181,
+                0.73659691
+            ]
+        ), y)
+
 if __name__ == "__main__":
     unittest.main()
