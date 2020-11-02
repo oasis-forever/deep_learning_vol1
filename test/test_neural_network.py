@@ -13,28 +13,9 @@ class TestNeuralNetwork(unittest.TestCase):
     def setUp(self):
         self.nnw = NeuralNetwork()
 
-    def test_step_func(self):
-        x = np.arange(-5.0, 5.0, 0.1)
-        y = self.nnw.step_func(x)
-        assert_array_equal(np.array(
-            [
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-            ]
-        ), y)
-        # self.assertEqual(True, path.exists("../img/step_func.png"))
-
     def test_sigmoid(self):
         x = np.arange(-5.0, 5.0, 0.1)
-        y = self.nnw.sigmoid(x)
+        y = self.nnw._sigmoid(x)
         assert_almost_equal(np.array(
             [
                 0.00669285, 0.00739154, 0.00816257, 0.0090133 , 0.0099518 ,
@@ -60,6 +41,37 @@ class TestNeuralNetwork(unittest.TestCase):
             ]
         ), y)
         # self.assertEqual(True, path.exists("../img/sigmoid.png"))
+
+    def test_softmax(self):
+        y = self.nnw._softmax(np.array([0.3, 2.9, 4.0]))
+        assert_almost_equal(np.array([0.01821127, 0.24519181, 0.73659691]), y)
+
+    def test_show_image(self):
+        x_train, t_train, x_test, t_test = self.nnw.get_data()
+        img, label, reshaped_img = self.nnw._process_image(x_train, t_train)
+        self.assertEqual(5, label)
+        self.assertEqual((784,), img.shape)
+        self.assertEqual((28, 28), reshaped_img.shape)
+        self.nnw._show_image(reshaped_img)
+
+    def test_step_func(self):
+        x = np.arange(-5.0, 5.0, 0.1)
+        y = self.nnw.step_func(x)
+        assert_array_equal(np.array(
+            [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+            ]
+        ), y)
+        # self.assertEqual(True, path.exists("../img/step_func.png"))
 
     def test_relu(self):
         x = np.arange(-5.0, 5.0, 0.1)
@@ -118,24 +130,12 @@ class TestNeuralNetwork(unittest.TestCase):
         y = self.nnw.forward(network, x)
         assert_almost_equal(np.array([0.31682708, 0.69627909]), y)
 
-    def test_softmax(self):
-        y = self.nnw.softmax(np.array([0.3, 2.9, 4.0]))
-        assert_almost_equal(np.array([0.01821127, 0.24519181, 0.73659691]), y)
-
-    def test_prepare_mnist_dataset(self):
-        x_train, t_train, x_test, t_test = self.nnw.prepare_mnist_dataset()
+    def test_get_data(self):
+        x_train, t_train, x_test, t_test = self.nnw.get_data()
         self.assertEqual((60000, 784), x_train.shape)
         self.assertEqual((60000,), t_train.shape)
         self.assertEqual((10000, 784), x_test.shape)
         self.assertEqual((10000,), t_test.shape)
-
-    def test_show_image(self):
-        x_train, t_train, x_test, t_test = self.nnw.prepare_mnist_dataset()
-        img, label, reshaped_img = self.nnw._process_image(x_train, t_train)
-        self.assertEqual(5, label)
-        self.assertEqual((784,), img.shape)
-        self.assertEqual((28, 28), reshaped_img.shape)
-        self.nnw.show_image(reshaped_img)
 
 if __name__ == "__main__":
     unittest.main()
