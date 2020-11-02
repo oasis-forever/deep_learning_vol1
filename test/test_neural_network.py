@@ -6,6 +6,7 @@ import os.path
 from os import path
 import sys
 sys.path.append("../lib")
+sys.path.append("../dataset")
 from neural_network import NeuralNetwork
 
 class TestNeuralNetwork(unittest.TestCase):
@@ -120,6 +121,21 @@ class TestNeuralNetwork(unittest.TestCase):
     def test_softmax(self):
         y = self.nnw.softmax(np.array([0.3, 2.9, 4.0]))
         assert_almost_equal(np.array([0.01821127, 0.24519181, 0.73659691]), y)
+
+    def test_prepare_mnist_dataset(self):
+        x_train, t_train, x_test, t_test = self.nnw.prepare_mnist_dataset()
+        self.assertEqual((60000, 784), x_train.shape)
+        self.assertEqual((60000,), t_train.shape)
+        self.assertEqual((10000, 784), x_test.shape)
+        self.assertEqual((10000,), t_test.shape)
+
+    def test_show_image(self):
+        x_train, t_train, x_test, t_test = self.nnw.prepare_mnist_dataset()
+        img, label, reshaped_img = self.nnw._process_image(x_train, t_train)
+        self.assertEqual(5, label)
+        self.assertEqual((784,), img.shape)
+        self.assertEqual((28, 28), reshaped_img.shape)
+        self.nnw.show_image(reshaped_img)
 
 if __name__ == "__main__":
     unittest.main()

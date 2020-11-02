@@ -1,6 +1,9 @@
 import sys
+sys.path.append("../dataset")
 import numpy as np
 import matplotlib.pylab as plt
+from mnist import load_mnist
+from PIL import Image
 
 class NeuralNetwork:
     def __init__(self):
@@ -60,3 +63,17 @@ class NeuralNetwork:
         sum_exp_a = np.sum(exp_a)
         y = exp_a / sum_exp_a
         return y
+
+    def prepare_mnist_dataset(self):
+        (x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize=False)
+        return x_train, t_train, x_test, t_test
+
+    def _process_image(self, x_train, t_train):
+        img   = x_train[0]
+        label = t_train[0]
+        reshaped_img = img.reshape(28, 28)
+        return img, label, reshaped_img
+
+    def show_image(self, img):
+        pil_img = Image.fromarray(np.uint8(img))
+        pil_img.show()
