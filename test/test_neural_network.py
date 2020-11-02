@@ -124,5 +124,8 @@ class TestNeuralNetwork(unittest.TestCase):
         self.assertEqual((2,), b.shape)
         assert_array_equal(np.array([23, 53, 83]), product)
 
+    def test_evaluate(self):
+        self.assertEqual("92.07%", self.nnw.evaluate())
+
 if __name__ == "__main__":
     unittest.main()
