@@ -111,5 +111,11 @@ class TestNeuralNetwork(unittest.TestCase):
         self.assertEqual((2,), b.shape)
         assert_array_equal(np.array([23, 53, 83]), product)
 
+    def test_forward(self):
+        network = self.nnw.init_network()
+        x = np.array([1.0, 0.5])
+        y = self.nnw.forward(network, x)
+        assert_almost_equal(np.array([0.31682708, 0.69627909]), y)
+
 if __name__ == "__main__":
     unittest.main()
