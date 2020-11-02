@@ -6,9 +6,9 @@ class SimplePerceptron:
 
     def and_gate(self, x1, x2):
         x = np.array([x1, x2])
-        w = np.array([0.5, 0.5])
+        W = np.array([0.5, 0.5])
         b = -0.7
-        tmp = np.sum(x * w) + b
+        tmp = np.sum(x * W) + b
         if tmp > 0:
             return 1
         else:
@@ -16,9 +16,9 @@ class SimplePerceptron:
 
     def nand_gate(self, x1, x2):
         x = np.array([x1, x2])
-        w = np.array([-0.5, -0.5])
+        W = np.array([-0.5, -0.5])
         b = 0.7
-        tmp = np.sum(x * w) + b
+        tmp = np.sum(x * W) + b
         if tmp > 0:
             return 1
         else:
@@ -26,9 +26,9 @@ class SimplePerceptron:
 
     def or_gate(self, x1, x2):
         x = np.array([x1, x2])
-        w = np.array([0.8, 0.8])
+        W = np.array([0.8, 0.8])
         b = -0.7
-        tmp = np.sum(x * w) + b
+        tmp = np.sum(x * W) + b
         if tmp > 0:
             return 1
         else:
