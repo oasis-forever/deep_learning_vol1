@@ -47,12 +47,12 @@ class TestNeuralNetwork(unittest.TestCase):
         assert_almost_equal(np.array([0.01821127, 0.24519181, 0.73659691]), y)
 
     def test_show_image(self):
-        x_train, t_train, x_test, t_test = self.nnw.get_data()
+        x_train, t_train = self.nnw._get_data()
         img, label, reshaped_img = self.nnw._process_image(x_train, t_train)
-        self.assertEqual(5, label)
+        self.assertEqual(7, label)
         self.assertEqual((784,), img.shape)
         self.assertEqual((28, 28), reshaped_img.shape)
-        self.nnw._show_image(reshaped_img)
+        # self.nnw._show_image(reshaped_img)
 
     def test_step_func(self):
         x = np.arange(-5.0, 5.0, 0.1)
@@ -123,19 +123,6 @@ class TestNeuralNetwork(unittest.TestCase):
         self.assertEqual((3, 2), a.shape)
         self.assertEqual((2,), b.shape)
         assert_array_equal(np.array([23, 53, 83]), product)
-
-    def test_forward(self):
-        network = self.nnw.init_network()
-        x = np.array([1.0, 0.5])
-        y = self.nnw.forward(network, x)
-        assert_almost_equal(np.array([0.31682708, 0.69627909]), y)
-
-    def test_get_data(self):
-        x_train, t_train, x_test, t_test = self.nnw.get_data()
-        self.assertEqual((60000, 784), x_train.shape)
-        self.assertEqual((60000,), t_train.shape)
-        self.assertEqual((10000, 784), x_test.shape)
-        self.assertEqual((10000,), t_test.shape)
 
 if __name__ == "__main__":
     unittest.main()
