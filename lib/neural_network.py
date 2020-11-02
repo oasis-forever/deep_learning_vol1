@@ -72,12 +72,13 @@ class NeuralNetwork:
         return np.dot(a, b)
 
     def evaluate(self):
-        x_test, t_test = self._get_data()
+        x, t = self._get_data()
         network = self._init_network()
+        batch_size = 100
         accuracy_count = 0
-        for i in range(len(x_test)):
-            y = self._predict(network, x_test[i])
-            p = np.argmax(y)
-            if p == t_test[i]:
-                accuracy_count += 1
-        return "{}%".format(((float(accuracy_count) / len(x_test)) * 100))
+        for i in range(0, len(x), batch_size):
+            x_batch = x[i:i+batch_size]
+            y_batch = self._predict(network, x_batch)
+            p = np.argmax(y_batch, axis=1)
+            accuracy_count += np.sum(p == t[i:i+batch_size])
+        return "{}%".format(((float(accuracy_count) / len(x)) * 100))
