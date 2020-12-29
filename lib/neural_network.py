@@ -11,6 +11,7 @@ class NeuralNetwork:
         pass
 
     def _save_image(self, x, y, func_name):
+        plt.figure()
         plt.plot(x, y)
         plt.ylim(-0.1, 1.1)
         plt.tight_layout()
