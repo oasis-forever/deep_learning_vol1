@@ -33,3 +33,7 @@ class NeuralNetworkLearning:
         return -np.sum(t * np.log(y + delta)) / batch_size
         # Non One-hot
         # return -np.sum(t * np.log(y[np.arrage(batch_size), t] + delta)) / batch_size
+
+    def numerical_diff(self, f, x):
+        h = 1e-4
+        return (f(x + h) - f(x - h)) / (2 * h)
