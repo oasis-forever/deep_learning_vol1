@@ -39,7 +39,7 @@ class NeuralNetwork:
         pil_img = Image.fromarray(np.uint8(img))
         pil_img.show()
 
-    def _get_data(self):
+    def _get_test_data(self):
         (x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize=False)
         return x_test, t_test
 
@@ -73,7 +73,7 @@ class NeuralNetwork:
         return np.dot(a, b)
 
     def evaluate(self):
-        x, t = self._get_data()
+        x, t = self._get_test_data()
         network = self._init_network()
         batch_size = 100
         accuracy_count = 0
