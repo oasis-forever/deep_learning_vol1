@@ -24,7 +24,7 @@ class NeuralNetworkLearning:
         return 0.5 * np.sum((y - t) ** 2)
 
     def cross_entropy_error(self, y, t):
-        if y.dim == 0:
+        if y.ndim == 1:
             t = t.reshape(1, t.size)
             y = y.reshape(1, y.size)
         batch_size = y.shape[0]
