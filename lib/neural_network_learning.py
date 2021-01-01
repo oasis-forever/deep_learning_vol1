@@ -37,3 +37,19 @@ class NeuralNetworkLearning:
     def numerical_diff(self, f, x):
         h = 1e-4
         return (f(x + h) - f(x - h)) / (2 * h)
+
+    def numerial_gradient(self, f, x):
+        h = 1e-4
+        grad = np.zeros_like(x)
+        for index in range(x.size):
+            tmp_val = x[index]
+            # Calculate f(x + h)
+            x[index] = tmp_val + h
+            fxh1 = f(x)
+            # Calculate f(x - h)
+            x[index] = tmp_val - h
+            fxh2 = f(x)
+            grad[index] = (fxh1 - fxh2) / (2 * h)
+            # Revert value
+            x[index] = tmp_val
+        return grad

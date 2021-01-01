@@ -1,5 +1,6 @@
 import unittest
 import numpy as np
+from numpy.testing import assert_almost_equal
 import sys
 sys.path.append("../lib")
 from neural_network_learning import NeuralNetworkLearning
@@ -67,6 +68,14 @@ class TestNeuralNetworkLearning(unittest.TestCase):
     def test_numerical_diff_4(self):
         result1 = self.nwl.numerical_diff(self.function_4, 4.0)
         self.assertEqual(7.999999999999119, result1)
+
+    def test_numerial_gradient(self):
+        result1 = self.nwl.numerial_gradient(self.function_2, np.array([3.0, 4.0]))
+        assert_almost_equal(np.array([6., 8.]), result1)
+        result2 = self.nwl.numerial_gradient(self.function_2, np.array([0.0, 2.0]))
+        assert_almost_equal(np.array([0., 4.]), result2)
+        result3 = self.nwl.numerial_gradient(self.function_2, np.array([3.0, 0.0]))
+        assert_almost_equal(np.array([6., 0.]), result3)
 
 if __name__ == "__main__":
     unittest.main()
