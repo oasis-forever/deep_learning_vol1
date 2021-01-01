@@ -32,5 +32,41 @@ class TestNeuralNetworkLearning(unittest.TestCase):
         result = self.nwl.cross_entropy_error(np.array(y), np.array(t))
         self.assertEqual(2.302584092994546, result)
 
+    # y = 0.01 * x ** 2 + 0.1 * x
+    def function_1(self, x):
+        return 0.01 * x ** 2 + 0.1 * x
+
+    def test_numerical_diff_1(self):
+        result1 = self.nwl.numerical_diff(self.function_1, 5)
+        self.assertEqual(0.1999999999990898, result1)
+        result2 = self.nwl.numerical_diff(self.function_1, 10)
+        self.assertEqual(0.2999999999986347, result2)
+
+    # f(x0, x1) = x0 ** 2 + x1 ** 2
+    def function_2(self, x):
+        return np.sum(x ** 2)
+
+    def test_numerical_diff_2(self):
+        result1 = self.nwl.numerical_diff(self.function_2, 5)
+        self.assertEqual(9.999999999976694, result1)
+        result2 = self.nwl.numerical_diff(self.function_2, 10)
+        self.assertEqual(19.99999999995339, result2)
+
+    # Return αf / αx0 to x0 when x0 = 3, x1 = 4
+    def function_3(self, x0):
+        return x0 * x0 + 4.0 ** 2.0
+
+    def test_numerical_diff_3(self):
+        result1 = self.nwl.numerical_diff(self.function_3, 3.0)
+        self.assertEqual(6.00000000000378, result1)
+
+    # Return αf / αx1 to x1 when x0 = 3, x1 = 4
+    def function_4(self, x1):
+        return 3.0 ** 2.0 + x1 * x1
+
+    def test_numerical_diff_4(self):
+        result1 = self.nwl.numerical_diff(self.function_4, 4.0)
+        self.assertEqual(7.999999999999119, result1)
+
 if __name__ == "__main__":
     unittest.main()
