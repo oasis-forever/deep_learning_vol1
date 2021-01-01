@@ -20,5 +20,17 @@ class TestNeuralNetworkLearning(unittest.TestCase):
         result = self.nwl.mean_squared_error(np.array(y), np.array(t))
         self.assertEqual(0.5975, result)
 
+    def test_cross_entropy_error_1(self):
+        t = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+        y = [0.1, 0.05, 0.6, 0.0, 0.05, 0.1, 0.0, 0.1, 0.0, 0.0]
+        result = self.nwl.cross_entropy_error(np.array(y), np.array(t))
+        self.assertEqual(0.510825457099338, result)
+
+    def test_cross_entropy_error_2(self):
+        t = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+        y = [0.1, 0.05, 0.1, 0.0, 0.05, 0.1, 0.0, 0.6, 0.0, 0.0]
+        result = self.nwl.cross_entropy_error(np.array(y), np.array(t))
+        self.assertEqual(2.302584092994546, result)
+
 if __name__ == "__main__":
     unittest.main()
