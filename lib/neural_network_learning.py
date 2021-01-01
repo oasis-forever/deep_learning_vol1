@@ -53,3 +53,10 @@ class NeuralNetworkLearning:
             # Revert value
             x[index] = tmp_val
         return grad
+
+    def gradient_descent(self, f, init_x, learning_rate=0.01, step_num=100):
+        x = init_x
+        for i in range(step_num):
+            grad = self.numerial_gradient(f, x)
+            x -= learning_rate * grad
+        return x

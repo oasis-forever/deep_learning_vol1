@@ -77,5 +77,9 @@ class TestNeuralNetworkLearning(unittest.TestCase):
         result3 = self.nwl.numerial_gradient(self.function_2, np.array([3.0, 0.0]))
         assert_almost_equal(np.array([6., 0.]), result3)
 
+    def test_gradient_descent(self):
+        result = self.nwl.gradient_descent(self.function_2, np.array([3.0, 4.0]), learning_rate=0.1)
+        assert_almost_equal(np.array([6.11110793e-10, 8.14814391e-10]), result)
+
 if __name__ == "__main__":
     unittest.main()
