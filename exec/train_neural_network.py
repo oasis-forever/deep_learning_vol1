@@ -29,7 +29,7 @@ for i in range(iters_num):
     t_batch    = t_train[batch_mask]
 
     # Calculate gradient
-    grad = net.numerical_gradient(x_batch, t_batch)
+    grad = net.gradient(x_batch, t_batch)
 
     # Update params
     for key in ("W1", "b1", "W2", "b2"):
@@ -47,12 +47,12 @@ for i in range(iters_num):
         print("train acc, test acc | {}, {}".format(str(train_acc), str(test_acc)))
 
 plt.figure()
-markers = {'train': 'o', 'test': 's'}
+markers = {"train": "o", "test": "s"}
 x = np.arange(len(train_acc_list))
-plt.plot(x, train_acc_list, label='train acc')
-plt.plot(x, test_acc_list, label='test acc', linestyle='--')
+plt.plot(x, train_acc_list, label="train acc")
+plt.plot(x, test_acc_list, label="test acc", linestyle="--")
 plt.xlabel("epochs")
 plt.ylabel("accuracy")
 plt.ylim(0, 1.0)
-plt.legend(loc='lower right')
-plt.savefig("../img/{}.png".format(train_neural_network))
+plt.legend(loc="lower right")
+plt.savefig("../img/{}.png".format("train_neural_network"))
