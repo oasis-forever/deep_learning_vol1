@@ -2,7 +2,7 @@
 
 * WSL(Ubuntu 20.04.1 LTS (GNU/Linux 4.19.128-microsoft-standard x86_64))
 * pyenv 1.2.22-19-g569992f2
-* Python 3.8.6
+* Python 3.8.7
     * certifi 2020.12.5
     * cycler 0.10.0
     * fasttext 0.9.2
@@ -14,7 +14,7 @@
     * pybind11 2.6.2
     * pyparsing 2.4.7
     * python-dateutil 2.8.1
-    * scipy 1.6.0
+    * scipy 1.6.1
     * setuptools 53.0.0
     * six 1.15.0
 
