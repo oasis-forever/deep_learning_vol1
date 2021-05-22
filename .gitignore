@@ -1,3 +1,4 @@
 dataset/*
 lib/__pycache__/
 lib/concerns/__pycache__/
+test/__pycache__/
