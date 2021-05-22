@@ -47,7 +47,7 @@ class TestNeuralNetwork(unittest.TestCase):
         assert_almost_equal(np.array([0.01821127, 0.24519181, 0.73659691]), y)
 
     def test_show_image(self):
-        x_train, t_train = self.nnw._get_data()
+        x_train, t_train = self.nnw._get_test_data()
         img, label, reshaped_img = self.nnw._process_image(x_train, t_train)
         self.assertEqual(7, label)
         self.assertEqual((784,), img.shape)

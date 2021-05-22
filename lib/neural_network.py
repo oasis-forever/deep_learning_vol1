@@ -60,7 +60,7 @@ class NeuralNetwork:
         return y
 
     def step_func(self, x):
-        y =  np.array(x > 0, dtype=np.int)
+        y =  np.array(x > 0, dtype=int)
         # self._save_image(x, y, sys._getframe().f_code.co_name)
         return y
 
